@@ -1,6 +1,8 @@
 # KollaBrigade
 
-KollaBrigade is a [Brigade](https://github.com/Azure/brigade)Project that builds 
+[![Docker Repository on Quay](https://quay.io/repository/charter-os/kolla-brigade/status "Docker Repository on Quay")](https://quay.io/repository/charter-os/kolla-brigade)
+
+KollaBrigade is a [Brigade](https://github.com/Azure/brigade) Project that builds 
 [Kolla](https://github.com/openstack/kolla) OpenStack containers. 
 
 ## Prerequisites
@@ -35,7 +37,6 @@ Clone KollaBrigade and change directory
 ```bash
 $ git clone https://github.com/lukepatrick/KollaBrigade
 $ cd KollaBrigade
-
 ```
 Helm install KollaBrigade
 > note the name and namespace can be customized
