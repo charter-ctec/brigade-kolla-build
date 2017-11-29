@@ -1,5 +1,4 @@
 FROM docker:17.06.0-ce-git
-MAINTAINER c-luke.philips@charter.com
 
 ENV KOLLA_BASE=ubuntu \
     KOLLA_TYPE=source \

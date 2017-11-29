@@ -1,5 +1,4 @@
 #!/bin/sh
-set -e
 # Allow for debugging first:
 if [ "$1" = "sh" ]; then
   exec sh
