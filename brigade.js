@@ -8,7 +8,7 @@ events.on("exec", (e, p) => {
 
 
   // create job with name and container image to use
-  var kb_job = new Job("kb_job", "quay.io/charter-os/kolla-brigade:0.1.0")
+  var kb_job = new Job("kb-job", "quay.io/charter-os/kolla-brigade:0.1.0")
 
   // allow docker socket
   kb_job.docker.enabled = true
@@ -41,7 +41,8 @@ events.on("exec", (e, p) => {
   }
 
 
-  console.log("==> Set up tasks, env, Job: " + kb_job)
+  console.log("==> Set up tasks, env, Job: ")
+  console.log(kb_job)
 
   console.log("==> Running Job")
 
@@ -49,8 +50,9 @@ events.on("exec", (e, p) => {
   kb_job.run().then( result => {
     console.log("==> Job Results")
     console.log(result.toString())
+    console.log("==> Done")
   })
 
-  console.log("==> Done")
+  
 
 })
