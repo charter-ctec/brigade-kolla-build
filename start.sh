@@ -7,7 +7,7 @@ fi
 # Since everything is parameterized, we must relatively clone and install everything
 # rather than rely on a Docker image
 
-export CODE_DIRECTORY = '/tmp/kolla/src/${KOLLA_PROJECT}'
+CODE_DIRECTORY = '/tmp/kolla/src/${KOLLA_PROJECT}'
 
 #Cleanup
 rm -rf /tmp/kolla/src/${KOLLA_PROJECT} || true
