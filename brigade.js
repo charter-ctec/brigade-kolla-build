@@ -8,7 +8,7 @@ events.on("exec", (e, p) => {
 
 
   // create job with name and container image to use
-  var kb_job = new Job("kb-job", "quay.io/charter-os/kolla-brigade:0.1.0")
+  var kb_job = new Job("kb-job", "quay.io/charter-os/kolla-brigade:0.2.0")
 
   // allow docker socket
   kb_job.docker.enabled = true

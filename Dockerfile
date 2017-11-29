@@ -24,32 +24,6 @@ RUN apk update && apk add --update \
 RUN rm -rf /var/lib/apk/lists/* /tmp/* /var/tmp/*
 
 COPY start.sh /usr/local/bin/start.sh
-#COPY clean.sh /usr/local/bin/clean.sh
 COPY push.sh /usr/local/bin/kolla-push.sh
 
-# RUN chmod +x /usr/local/bin/start.sh && \
-#     chmod +x /usr/local/bin/clean.sh && \
-#     chmod +x /usr/local/bin/kolla-push.sh
-
-WORKDIR /root
-
-RUN git clone http://git.openstack.org/openstack/kolla.git ./kolla-$KOLLA_VERSION && \
-    cd ./kolla-$KOLLA_VERSION && \
-    git checkout tags/$KOLLA_VERSION
-
-RUN mkdir -p .venv && \
-    virtualenv .venv/kolla-builds && \
-    . .venv/kolla-builds/bin/activate && \
-    cd ./kolla-$KOLLA_VERSION && \
-    pip install -e . && \
-    mkdir -p /etc/kolla
-
-RUN mkdir -p /root/.kolla-$KOLLA_VERSION/src/$KOLLA_PROJECT && \
-    git clone http://git.openstack.org/openstack/$KOLLA_PROJECT.git /tmp/kolla/src/$KOLLA_PROJECT
-
-COPY kolla-build.conf /etc/kolla/kolla-build.conf
-
-WORKDIR /root/.kolla-$KOLLA_VERSION
-
-ENTRYPOINT ["/usr/local/bin/start.sh"]
 CMD ["/bin/sh"]
