@@ -39,6 +39,7 @@ mkdir -p /root/.kolla-$KOLLA_VERSION/src/$KOLLA_PROJECT && \
 
 cd /root/.kolla-$KOLLA_VERSION
 
+ls -lrsa /root
 
 # Activate the kolla-build environment:
 . /root/.venv/kolla-builds/bin/activate
