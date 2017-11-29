@@ -46,11 +46,43 @@ $ helm install --name kollabrigade brigade/brigade-project -f kollabrigade.yaml
 
 ## Usage
 
-* Customize OpenStack Project, tags, registry, etc..
-* Set up triggers
-* Manually run
+Manually run the project. The project name is the same as the project value in
+the *kollabrigade.yaml*
+```bash
+$ brig run lukepatrick/KollaBrigade
 ```
+
+To customize the parameters of the Project, edit *brigade.js*
+```javascript
+  //set up ENV
+  kb_job.env = {
+    "KOLLA_BASE": "ubuntu",
+    "KOLLA_TYPE": "source",
+    "KOLLA_TAG": "3.0.2-kb",
+    "KOLLA_PROJECT": "keystone",
+    "KOLLA_NAMESPACE": "charter-os",
+    "KOLLA_VERSION": "3.0.2",
+    "DOCKER_USER": "user",
+    "DOCKER_PASS": "pass",
+    "DOCKER_REGISTRY": "quay.io",
+    "REPO_BASE": "https://github.com/openstack",
+    "PROJECT_REFERENCE": "stable/ocata",
+    "PROJECT_GIT_COMMIT": "e1a94f39edb6cf777c71c7a511476b1e60436ab9",
+    "RELEASE": "stable-ocata"
+  }
 ```
+Change **KOLLA_PROJECT** for a different OpenStack Application, 
+**PROJECT_REFERENCE** for a different release, or **KOLLA_TAG** 
+for the Tag applied to the Images created. 
+
+If *brigade.js* is customized then running the Project will need to have source *brigade.js* overriden
+
+Run with override:
+```bash
+$ brig run lukepatrick/KollaBrigade -f brigade.js
+```
+
+
 
 ## Dockerfile
 
