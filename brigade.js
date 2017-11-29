@@ -20,7 +20,7 @@ events.on("exec", (e, p) => {
 
   kb_job.tasks.push("./src/push.sh") // add next task - push image to registry
 
-  kb_job.tasks.push("./src/cleanup.sh") // add final task - clean up image
+  //kb_job.tasks.push("./src/cleanup.sh") // add final task - clean up image
 
   //set up ENV
   // TODO: SECRETS
