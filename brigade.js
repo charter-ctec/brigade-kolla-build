@@ -5,29 +5,32 @@ const { events, Job } = require("brigadier")
 
 events.on("exec", (e, p) => {
 
-  //debug info
+  // env info
   console.log("==> Project " + p.name + " clones the repo at " + p.repo.cloneURL)
   console.log("==> Event " + e.type + " caused by " + e.provider)
 
 
   // create job with name and container image to use
-  var kb_job = new Job("kb-job", CONTAINER)
+  var kb_start_job = new Job("kb-job-start", CONTAINER) // runs start job
+  var kb_push_job = new Job("kb-job-push", CONTAINER) // following start job finish, run a push job
 
   // allow docker socket
-  kb_job.docker.enabled = true
+  kb_start_job.docker.enabled = true
+  kb_push_job.docker.enabled = true
 
   //set up tasks
-  kb_job.tasks = [] //init empty tasks
+  kb_start_job.tasks = [] //init empty tasks
+  kb_push_job.tasks = []
 
-  kb_job.tasks.push("source /src/start.sh") // add first task - build kolla container
+  kb_start_job.tasks.push("source /src/start.sh") // add first task - build kolla container
 
-  kb_job.tasks.push("source /src/push.sh") // add next task - push image to registry
+  kb_push_job.tasks.push("source /src/push.sh") // add next task - push image to registry
 
+  // TODO: Clean up created containers
   //kb_job.tasks.push("./src/cleanup.sh") // add final task - clean up image
 
   //set up ENV
-  // TODO: SECRETS
-  kb_job.env = {
+  kb_start_job.env = kb_push_job.env = {
     "KOLLA_BASE": "ubuntu",
     "KOLLA_TYPE": "source",
     "KOLLA_TAG": "3.0.2-kb",
@@ -44,16 +47,27 @@ events.on("exec", (e, p) => {
   }
 
 
-  console.log("==> Set up tasks, env, Job: ")
-  console.log(kb_job)
+  console.log("==> Set up tasks, env, Job ")
+  //debug only
+  //console.log(kb_start_job)
+  //console.log(kb_push_job)
 
-  console.log("==> Running Job")
+  console.log("==> Running Start Job")
 
-  // run Job, get Promise and print results
-  kb_job.run().then( result => {
-    console.log("==> Job Results")
-    console.log(result.toString())
-    console.log("==> Done")
+  // run Start Job, get Promise and print results
+  kb_start_job.run().then( result => {
+    //debug only
+    //console.log("==> Start Job Results")
+    //console.log(result.toString())
+    console.log("==> Start Job Done")
+    console.log("==> Running Push Job")
+    // After start job finished, run push job
+    kb_push_job.run().then( result => {
+      //debug only
+      //console.log("==> Push Job Results")
+      //console.log(result.toString())
+      console.log("==> Push JobDone")
+  })
   })
 
   
