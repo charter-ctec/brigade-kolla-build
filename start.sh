@@ -1,4 +1,5 @@
 #!/bin/sh
+set -e
 # Allow for debugging first:
 if [ "$1" = "sh" ]; then
   exec sh
@@ -8,7 +9,7 @@ fi
 . /root/.venv/kolla-builds/bin/activate
 
 # Clean up any space previously left from docker builds:
-. /usr/local/bin/clean.sh
+#. /usr/local/bin/clean.sh
 
 # Log into your registy:
 docker login -u="$DOCKER_USER" -p="$DOCKER_PASS" $DOCKER_REGISTRY
