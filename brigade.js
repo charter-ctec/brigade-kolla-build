@@ -35,9 +35,9 @@ events.on("exec", (e, p) => {
     "DOCKER_PASS": "pass",
     "DOCKER_REGISTRY": "quay.io",
     "REPO_BASE": "https://github.com/openstack",
-    "PROJECT_REFERENCE": "stable/newton",
-    "PROJECT_GIT_COMMIT": "4892f35575bde78c612088a388fbf50c7f19f9e7",
-    "RELEASE": "stable-newton"
+    "PROJECT_REFERENCE": "stable/ocata",
+    "PROJECT_GIT_COMMIT": "e1a94f39edb6cf777c71c7a511476b1e60436ab9",
+    "RELEASE": "stable-ocata"
   }
 
 
