@@ -44,6 +44,17 @@ Helm install KollaBrigade
 $ helm install --name kollabrigade brigade/brigade-project -f kollabrigade.yaml
 ```
 
+Install with Docker Registry Secrets. **NEVER** add user/passwords to GitHub 
+code that might be checked in. Brigade can store secrets in a opaque 
+Kubernetes Secret. Set these dynamically at Install time.
+
+```bash
+$ helm install --name kollabrigade brigade/brigade-project \
+    -f kollabrigade.yaml \
+    --set secrets.docker_user=username \
+    --set secrets.docker_pass=password
+```
+
 ## Usage
 
 Manually run the project. The project name is the same as the project value in
