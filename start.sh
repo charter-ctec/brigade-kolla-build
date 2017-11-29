@@ -16,12 +16,13 @@ mkdir -p /tmp/kolla/src/${KOLLA_PROJECT} || true
 
 #SET WORKDIR
 cd /root
-
 #SETUP KOLLA
 git clone http://git.openstack.org/openstack/kolla.git ./kolla-$KOLLA_VERSION && \
 	cd ./kolla-$KOLLA_VERSION && \
 	git checkout tags/$KOLLA_VERSION
 
+#SET WORKDIR
+cd /root
 #SETUP ENV
 mkdir -p .venv && \
     virtualenv .venv/kolla-builds && \
@@ -30,6 +31,8 @@ mkdir -p .venv && \
     pip install -e . && \
     mkdir -p /etc/kolla
 
+#SET WORKDIR
+cd /root
 #SETUP OPENSTACK BASE
 mkdir -p /root/.kolla-$KOLLA_VERSION/src/$KOLLA_PROJECT && \
     git clone $REPO_BASE/$KOLLA_PROJECT.git /tmp/kolla/src/$KOLLA_PROJECT && \
