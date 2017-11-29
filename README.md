@@ -97,13 +97,18 @@ $ brig run lukepatrick/KollaBrigade -f brigade.js
 
 ## Dockerfile
 
+
+The Dockerfile and **kolla-brigade** Image are tagged/matched to the Kolla Version installed. Match the desired Kolla Version Tag here with whatever desired in *kollabrigade.yaml*
+
+If no `--build-arg KOLLA_VERSION` is specified then a default will be used.
+
 Build
 ```bash
-docker build -t quay.io/charter-os/kolla-brigade:0.1.0 .
+docker build -t --build-arg KOLLA_VERSION=3.0.2 quay.io/charter-os/kolla-brigade:3.0.2 . $ docker build  .
 ```
 Push
 ```bash
-docker push quay.io/charter-os/kolla-brigade:0.1.0
+docker push quay.io/charter-os/kolla-brigade:3.0.2
 ```
 
 ## Contribute

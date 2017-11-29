@@ -1,3 +1,6 @@
+const KOLLA_VERSION = "3.0.2"
+const CONTAINER = "quay.io/charter-os/kolla-brigade:" + KOLLA_VERSION
+
 const { events, Job } = require("brigadier")
 
 events.on("exec", (e, p) => {
@@ -8,7 +11,7 @@ events.on("exec", (e, p) => {
 
 
   // create job with name and container image to use
-  var kb_job = new Job("kb-job", "quay.io/charter-os/kolla-brigade:0.2.0")
+  var kb_job = new Job("kb-job", CONTAINER)
 
   // allow docker socket
   kb_job.docker.enabled = true
@@ -30,7 +33,7 @@ events.on("exec", (e, p) => {
     "KOLLA_TAG": "3.0.2-kb",
     "KOLLA_PROJECT": "keystone",
     "KOLLA_NAMESPACE": "charter-os",
-    "KOLLA_VERSION": "3.0.2",
+    "KOLLA_VERSION": KOLLA_VERSION,
     "DOCKER_USER": p.secrets.docker_user,
     "DOCKER_PASS": p.secrets.docker_pass,
     "DOCKER_REGISTRY": "quay.io",
