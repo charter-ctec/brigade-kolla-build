@@ -55,19 +55,19 @@ events.on("exec", (e, p) => {
   console.log("==> Running Start Job")
 
   // run Start Job, get Promise and print results
-  kb_start_job.run().then( result => {
+  kb_start_job.run().then( resultStart => {
     //debug only
     //console.log("==> Start Job Results")
-    //console.log(result.toString())
+    //console.log(resultStart.toString())
     console.log("==> Start Job Done")
     console.log("==> Running Push Job")
     // After start job finished, run push job
-    kb_push_job.run().then( result => {
+    kb_push_job.run().then( resultPush => {
       //debug only
       //console.log("==> Push Job Results")
-      //console.log(result.toString())
-      console.log("==> Push JobDone")
-  })
+      //console.log(resultPush.toString())
+      console.log("==> Push Job Done")
+    })
   })
 
   
