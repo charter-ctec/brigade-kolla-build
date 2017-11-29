@@ -16,9 +16,9 @@ events.on("exec", (e, p) => {
   //set up tasks
   kb_job.tasks = [] //init empty tasks
 
-  kb_job.tasks.push("./src/start.sh") // add first task - build kolla container
+  kb_job.tasks.push("source /src/start.sh") // add first task - build kolla container
 
-  kb_job.tasks.push("./src/push.sh") // add next task - push image to registry
+  kb_job.tasks.push("source /src/push.sh") // add next task - push image to registry
 
   //kb_job.tasks.push("./src/cleanup.sh") // add final task - clean up image
 
