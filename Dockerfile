@@ -1,7 +1,7 @@
 FROM docker:17.06.0-ce-git
 
 ARG KOLLA_VERSION
-ENV KOLLA_VERSION ${KOLLA_VERSION:-3.0.2}
+ENV KOLLA_VERSION ${KOLLA_VERSION:-4.0.2}
 
 RUN apk update && apk add --update \
     gcc \

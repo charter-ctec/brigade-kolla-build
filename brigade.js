@@ -1,4 +1,4 @@
-const KOLLA_VERSION = "3.0.2"
+const KOLLA_VERSION = "4.0.2"
 const CONTAINER = "quay.io/charter-os/kolla-brigade:" + KOLLA_VERSION
 
 const { events, Job } = require("brigadier")
@@ -33,7 +33,7 @@ events.on("exec", (e, p) => {
   kb_start_job.env = kb_push_job.env = {
     "KOLLA_BASE": "ubuntu",
     "KOLLA_TYPE": "source",
-    "KOLLA_TAG": "3.0.2-kb",
+    "KOLLA_TAG": "4.0.2-kb",
     "KOLLA_PROJECT": "keystone",
     "KOLLA_NAMESPACE": "charter-os",
     "KOLLA_VERSION": KOLLA_VERSION,

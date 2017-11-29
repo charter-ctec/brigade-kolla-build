@@ -104,11 +104,11 @@ If no `--build-arg KOLLA_VERSION` is specified then a default will be used.
 
 Build
 ```bash
-docker build -t quay.io/charter-os/kolla-brigade:3.0.2 --build-arg KOLLA_VERSION=3.0.2 .
+docker build -t quay.io/charter-os/kolla-brigade:4.0.2 --build-arg KOLLA_VERSION=4.0.2 .
 ```
 Push
 ```bash
-docker push quay.io/charter-os/kolla-brigade:3.0.2
+docker push quay.io/charter-os/kolla-brigade:4.0.2
 ```
 
 ## Contribute
