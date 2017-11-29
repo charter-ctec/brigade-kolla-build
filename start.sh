@@ -4,6 +4,42 @@ if [ "$1" = "sh" ]; then
   exec sh
 fi
 
+# Since everything is parameterized, we must relatively clone and install everything
+# rather than rely on a Docker image
+
+export CODE_DIRECTORY = '/tmp/kolla/src/${KOLLA_PROJECT}'
+
+#Cleanup
+rm -rf /tmp/kolla/src/${KOLLA_PROJECT} || true
+
+mkdir -p /tmp/kolla/src/${KOLLA_PROJECT} || true
+
+#SET WORKDIR
+cd /root
+
+#SETUP KOLLA
+git clone http://git.openstack.org/openstack/kolla.git ./kolla-$KOLLA_VERSION && \
+	cd ./kolla-$KOLLA_VERSION && \
+	git checkout tags/$KOLLA_VERSION
+
+#SETUP ENV
+mkdir -p .venv && \
+    virtualenv .venv/kolla-builds && \
+    . .venv/kolla-builds/bin/activate && \
+    cd ./kolla-$KOLLA_VERSION && \
+    pip install -e . && \
+    mkdir -p /etc/kolla
+
+#SETUP OPENSTACK BASE
+mkdir -p /root/.kolla-$KOLLA_VERSION/src/$KOLLA_PROJECT && \
+    git clone $REPO_BASE/$KOLLA_PROJECT.git /tmp/kolla/src/$KOLLA_PROJECT && \
+    cd /tmp/kolla/src/$KOLLA_PROJECT && \
+    git checkout ${PROJECT_REFERENCE}
+
+
+cd /root/.kolla-$KOLLA_VERSION
+
+
 # Activate the kolla-build environment:
 . /root/.venv/kolla-builds/bin/activate
 
