@@ -14,5 +14,6 @@ sleep 1
 #
 set -ex
 docker images | grep "${DOCKER_REGISTRY}/${KOLLA_NAMESPACE}/${KOLLA_BASE}-${KOLLA_TYPE}-" | cut -d ' ' -f 1 | while read -r image ; do
-   docker push "${image}:${KOLLA_TAG}"
+	echo "${image}:${KOLLA_TAG}"
+   #docker push "${image}:${KOLLA_TAG}"
 done;

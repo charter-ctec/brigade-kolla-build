@@ -18,6 +18,6 @@ kolla-build $KOLLA_PROJECT
 
 # TEST ONLY - Push completed containers to the container registry (rework for python/golan):
 # REMOVED FOR JENKINS PIPELINE TESTING
-/usr/local/bin/kolla-push.sh
+#/usr/local/bin/kolla-push.sh
 
 # END
