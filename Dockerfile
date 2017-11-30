@@ -11,6 +11,7 @@ RUN apk update && apk add --update \
     py-virtualenv \
     build-base \
     openssl-dev \
+    linux-headers \
     libffi-dev
 
 RUN rm -rf /var/lib/apk/lists/* /tmp/* /var/tmp/*
