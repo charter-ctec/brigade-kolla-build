@@ -9,7 +9,6 @@ events.on("exec", (e, p) => {
   console.log("==> Project " + p.name + " clones the repo at " + p.repo.cloneURL)
   console.log("==> Event " + e.type + " caused by " + e.provider)
 
-
   // create job with name and container image to use
   var kb_start_job = new Job("kb-job-start", CONTAINER) // runs start job
   var kb_push_job = new Job("kb-job-push", CONTAINER) // following start job finish, run a push job
@@ -17,6 +16,9 @@ events.on("exec", (e, p) => {
   // allow docker socket
   kb_start_job.docker.enabled = true
   kb_push_job.docker.enabled = true
+
+  // for long-running jobs like Nova
+  kb_start_job.timeout = 3600000
 
   //set up tasks
   kb_start_job.tasks = [] //init empty tasks
