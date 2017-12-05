@@ -14,7 +14,7 @@ fi
 #
 ############################################################
 
-PROJECTS="nova neutron cinder glance heat horizon magnum mistral senlin keystone ceilometer barbican rally"
+PROJECTS="nova neutron cinder glance heat horizon magnum mistral senlin keystone ceilometer barbican"
 for proj in $PROJECTS; do
     sed  "s/\(KOLLA_PROJECT\": \).*$/\1 \"$proj\",/" brigade.js > brigade-$proj.js
     echo "building for $proj"
